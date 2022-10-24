@@ -23,14 +23,18 @@ export const collection = db.collection('greyhoundPlayers');
 
 
 const app = express();
-//const PORT = 4002;
-const PORT = 80;
-app.use(express.json());
+const PORT = 4002;
+// const PORT = 80;
 
+
+
+app.use(express.json());
 app.use('/greyhound', edenRouter)
 
 
-app.listen(PORT, () => {
+app.use(express.static("public"))
+
+app.listen(process.env.PORT || PORT, () => {
     console.log(`Web server running on port ${PORT}`)
 })
 
