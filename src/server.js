@@ -24,7 +24,7 @@ export const collection = db.collection('greyhoundPlayers');
 
 const app = express();
 //const PORT = 4002;
-const PORT = 8080;
+const PORT = 80;
 app.use(express.json());
 
 app.use('/greyhound', edenRouter)
