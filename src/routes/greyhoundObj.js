@@ -129,6 +129,6 @@ router.patch("/", async (request, response) => {
 
     const fOnline = recentGreyhounds.filter(element => element.name !== update.name && element.online === true)
     if (fOnline.length > 0) {
-        response.json(JSON.stringify(fOnline))
+        response.json(fOnline)
     } else { response.json('empty') }
 })
