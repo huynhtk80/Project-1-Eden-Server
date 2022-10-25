@@ -81,22 +81,8 @@ router.post("/", async (request, response) => {
         response.send("uploaded")
     } else
         response.send('try again')
-
-    // let index = recentGreyhounds.findIndex((g) => g.name === greyhound.name)
-    // if (index === -1) {
-    //     recentGreyhounds.push(greyhound)
-    //     console.log(recentGreyhounds)
-    //     response.send("uploaded")
-    // } else
-    //     response.send('try again')
 })
 
-// router.delete("/", (request, response) => {
-//     const sandwich = request.body;
-//     let sandwiches = deleteSandwiches(sandwich.name)
-//     response.json(sandwiches)
-// })
-// greyhound sleep() and saves as well
 router.put("/", async (request, response) => {
     console.log('put end point reached')
 
@@ -128,29 +114,21 @@ router.put("/", async (request, response) => {
 
         response.send('Saved')
     }
-    // if (index === -1) {
-    //     recentGreyhounds.push(greyhound)
-    //     console.log(recentGreyhounds)
-    //     response.send("New Greyhound Saved")
-    // } else {
-    //     Object.assign(recentGreyhounds[index], greyhound)
-    //     console.log(recentGreyhounds)
-    //     response.send('Saved')
-    // }
 })
 
 //save update online players ... need fix from db
-router.patch("/", (request, response) => {
-    console.log('patch enpoint reached')
+router.patch("/", async (request, response) => {
+    console.log('patch endpoint reached')
     let update = request.body;
     console.log(update)
     let index = recentGreyhounds.findIndex((g) => g.name === update.name)
     if (index === -1) {
-        console.log('update failed no know greyhound')
+        let found = await collection.findOne({ name: `${update.name}` })
+        recentGreyhounds.push(found)
     } else { Object.assign(recentGreyhounds[index], update) }
 
-    const found = recentGreyhounds.filter(element => element.name !== update.name && element.online === true)
-    if (found.length > 0) {
-        response.json(JSON.stringify(found))
+    const fOnline = recentGreyhounds.filter(element => element.name !== update.name && element.online === true)
+    if (fOnline.length > 0) {
+        response.json(JSON.stringify(fOnline))
     } else { response.json('empty') }
 })
