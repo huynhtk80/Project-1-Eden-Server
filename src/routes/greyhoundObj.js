@@ -120,7 +120,6 @@ router.put("/", async (request, response) => {
 router.patch("/", async (request, response) => {
     console.log('patch endpoint reached')
     let update = request.body;
-    console.log(update)
     let index = recentGreyhounds.findIndex((g) => g.name === update.name)
     if (index === -1) {
         let found = await collection.findOne({ name: `${update.name}` })
@@ -128,8 +127,8 @@ router.patch("/", async (request, response) => {
     } else { Object.assign(recentGreyhounds[index], update) }
 
     const fOnline = recentGreyhounds.filter(element => element.name !== update.name && element.online === true)
+    console.log(fOnline)
     if (fOnline.length > 0) {
-        console.log(fOnline)
         response.json(JSON.stringify(fOnline))
     } else { response.json('empty') }
 })
