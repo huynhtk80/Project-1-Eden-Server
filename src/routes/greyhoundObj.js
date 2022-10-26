@@ -4,9 +4,9 @@ export const router = express.Router();
 
 export const recentGreyhounds = [
     {
-        icon: 'A',
+        icon: 'T',
         name: 'TEST',
-        loc: { x: 20, y: 5 },
+        loc: { map: 0, x: 20, y: 5 },
         CurStamina: 100,
         maxStamina: 100,
         hunger: 0,
@@ -15,12 +15,14 @@ export const recentGreyhounds = [
         experience: 0,
         level: 1,
         online: false,
-        lastOnline: 0
+        lastOnline: 0,
+        ball1: false,
+        ball2: false
     },
     {
         icon: 'B',
-        name: 'TEST B',
-        loc: { x: 20, y: 5 },
+        name: 'TESTB',
+        loc: { map: 0, x: 20, y: 5 },
         CurStamina: 100,
         maxStamina: 100,
         hunger: 0,
@@ -29,7 +31,9 @@ export const recentGreyhounds = [
         experience: 0,
         level: 1,
         online: false,
-        lastOnline: 0
+        lastOnline: 0,
+        ball1: false,
+        ball2: false
     }
 
 ]
@@ -83,6 +87,7 @@ router.post("/", async (request, response) => {
         response.send('try again')
 })
 
+//save greyhound
 router.put("/", async (request, response) => {
     console.log('put end point reached')
 
@@ -108,7 +113,9 @@ router.put("/", async (request, response) => {
                 experience: greyhound.experience,
                 level: greyhound.level,
                 online: greyhound.online,
-                lastOnline: greyhound.lastOnline
+                lastOnline: greyhound.lastOnline,
+                ball1: greyhound.ball1,
+                ball2: greyhound.ball2
             }
         })
 
