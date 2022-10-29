@@ -16,7 +16,7 @@ ____________
 
 - run server:
   
-  - Make sure server PORT(server.js) and Client(in client git package, client.js) 
+  - Make sure Server PORT(server.js) and Client PORT(eden-client git package, client.js) 
   - npm start  or node ./src/server.js
   - server can also be hosted remotely (eg. https://guarded-atoll-77874.herokuapp.com/ currently host a version of the server)
 
