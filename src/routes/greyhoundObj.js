@@ -92,9 +92,6 @@ router.put("/", async (request, response) => {
     console.log('put end point reached')
 
     const greyhound = request.body;
-    console.log(typeof greyhound)
-    console.log('put greyhound:', greyhound)
-    console.log(greyhound.name)
     let found = await collection.findOne({ name: `${greyhound.name}` })
     console.log('database found ', found)
     if (found === null) {
@@ -125,7 +122,6 @@ router.put("/", async (request, response) => {
 
 //save update online players ... need fix from db
 router.patch("/", async (request, response) => {
-    console.log('patch endpoint reached')
     let update = request.body;
     let index = recentGreyhounds.findIndex((g) => g.name === update.name)
     if (index === -1) {
@@ -134,7 +130,6 @@ router.patch("/", async (request, response) => {
     } else { Object.assign(recentGreyhounds[index], update) }
 
     const fOnline = recentGreyhounds.filter(element => element.name !== update.name && element.online === true)
-    console.log(fOnline)
     if (fOnline.length > 0) {
         response.json(JSON.stringify(fOnline))
     } else { response.json('empty') }

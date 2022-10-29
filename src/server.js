@@ -1,6 +1,7 @@
 import express from "express"
 import { checkOnline, router as edenRouter } from './routes/greyhoundObj.js'
 import { MongoClient } from 'mongodb'
+import { router as mesRouter } from './routes/message.js'
 
 // Connection URL
 const url = "mongodb+srv://huynh_tk:edengame@cluster0.wdg3ave.mongodb.net/?retryWrites=true&w=majority";
@@ -30,6 +31,7 @@ const PORT = 4002;
 
 app.use(express.json());
 app.use('/greyhound', edenRouter)
+app.use('/message', mesRouter)
 
 
 app.use(express.static("public"))
